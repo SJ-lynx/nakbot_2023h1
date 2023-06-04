@@ -27,7 +27,7 @@ async def cancel_FSM(message: Message, state: FSMContext):
 		await message.answer("Операция отменена!", reply_markup=admin_markup)
 
 
-@dp.message_handler(state=AdminState.get_channel)
+@dp.message_handler(state=AdminState.replenish)
 async def process_get_channel(message: Message, state: FSMContext):
 	try:
 		id, amount = message.text.split(" - ")
@@ -38,7 +38,7 @@ async def process_get_channel(message: Message, state: FSMContext):
 		await message.answer(Ex)
 
 
-@dp.message_handler(state=AdminState.replenish)
+@dp.message_handler(state=AdminState.get_channel)
 async def process_replanish(message: Message, state: FSMContext):
 	try:
 		name, link, id = message.text.split(" - ")
